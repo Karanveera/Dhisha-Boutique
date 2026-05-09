@@ -337,7 +337,6 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);min-heigh
 .cat-name{font-family:var(--serif);font-size:.93rem;font-weight:600;color:var(--teal-dark);margin-bottom:.2rem;transition:color .3s;position:relative;z-index:1;}
 .cat-sub{font-size:.65rem;color:var(--text-light);transition:color .3s;position:relative;z-index:1;}
 
-/* SEARCH & FILTER */
 .search-filter-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap;}
 .search-wrap{position:relative;flex:1;min-width:200px;}
 .search-input{width:100%;border:1.5px solid var(--border);background:#fff;padding:.65rem 1rem .65rem 2.6rem;font-family:var(--sans);font-size:.85rem;color:var(--text);outline:none;transition:border-color .2s;border-radius:2px;}
@@ -347,12 +346,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);min-heigh
 .sort-select:focus{border-color:var(--teal);}
 .filter-row{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin-bottom:2rem;}
 .filter-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);}
-.filter-btn{background:var(--ivory);border:1.5px solid var(--border);color:var(--text-mid);padding:.42rem 1rem;font-family:var(--sans);font-size:.71rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .28s cubic-bezier(.4,0,.2,1);border-radius:50px;position:relative;overflow:hidden;}
-.filter-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--teal),var(--teal-dark));opacity:0;transition:opacity .28s;border-radius:50px;}
-.filter-btn:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);box-shadow:0 4px 14px rgba(45,110,110,.18);}
-.filter-btn.active{background:var(--teal-dark);border-color:var(--teal-dark);color:#fff;box-shadow:0 4px 18px rgba(45,110,110,.35);transform:translateY(-2px);}
-.filter-btn.active::before{opacity:1;}
-.filter-btn span{position:relative;z-index:1;}
+.filter-btn{background:var(--ivory);border:1.5px solid var(--border);color:var(--text-mid);padding:.38rem .85rem;font-family:var(--sans);font-size:.71rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px;}
+.filter-btn:hover,.filter-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
 
 /* PRODUCTS */
 .products-section{background:var(--cream);}
