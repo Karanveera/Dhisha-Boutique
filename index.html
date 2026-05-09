@@ -262,6 +262,13 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);min-heigh
 .nav-links a:hover{color:var(--teal);}
 .nav-links a:hover::after{width:100%;}
 .nav-right{display:flex;align-items:center;gap:.5rem;}
+/* NAV SOCIAL */
+.nav-social-links{display:flex;align-items:center;gap:.3rem;margin-right:.3rem;}
+.nav-social-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--text-mid);transition:all .25s cubic-bezier(.4,0,.2,1);text-decoration:none;}
+.nav-social-btn:hover{transform:scale(1.14) translateY(-2px);}
+.nav-social-btn:first-child:hover{background:linear-gradient(135deg,#f06340,#bc1888);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(188,24,136,.4);}
+.nav-social-btn.nav-wa:hover{background:#25D366;border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.4);}
+@media(max-width:960px){.nav-social-links{display:none;}}
 .nav-icon-btn{background:none;border:none;cursor:pointer;color:var(--text-mid);font-size:1.05rem;padding:.4rem;position:relative;display:flex;align-items:center;justify-content:center;transition:color .2s;}
 .nav-icon-btn:hover{color:var(--teal);}
 .cart-badge{position:absolute;top:-1px;right:-1px;background:var(--crimson);color:#fff;border-radius:50%;width:15px;height:15px;font-size:.55rem;font-weight:700;display:none;align-items:center;justify-content:center;}
@@ -340,8 +347,12 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);min-heigh
 .sort-select:focus{border-color:var(--teal);}
 .filter-row{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin-bottom:2rem;}
 .filter-lbl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);}
-.filter-btn{background:var(--ivory);border:1.5px solid var(--border);color:var(--text-mid);padding:.38rem .85rem;font-family:var(--sans);font-size:.71rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px;}
-.filter-btn:hover,.filter-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+.filter-btn{background:var(--ivory);border:1.5px solid var(--border);color:var(--text-mid);padding:.42rem 1rem;font-family:var(--sans);font-size:.71rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .28s cubic-bezier(.4,0,.2,1);border-radius:50px;position:relative;overflow:hidden;}
+.filter-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--teal),var(--teal-dark));opacity:0;transition:opacity .28s;border-radius:50px;}
+.filter-btn:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);box-shadow:0 4px 14px rgba(45,110,110,.18);}
+.filter-btn.active{background:var(--teal-dark);border-color:var(--teal-dark);color:#fff;box-shadow:0 4px 18px rgba(45,110,110,.35);transform:translateY(-2px);}
+.filter-btn.active::before{opacity:1;}
+.filter-btn span{position:relative;z-index:1;}
 
 /* PRODUCTS */
 .products-section{background:var(--cream);}
@@ -349,25 +360,31 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);min-heigh
 .no-results{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-light);}
 
 /* PRODUCT CARD */
-.product-card{background:var(--ivory);border:1px solid var(--border);cursor:pointer;transition:all .3s;position:relative;overflow:hidden;border-radius:4px;}
-.product-card:hover{border-color:var(--teal);box-shadow:var(--shadow-md);transform:translateY(-5px);}
+.product-card{background:var(--ivory);border:1px solid var(--border);cursor:pointer;transition:all .38s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;border-radius:8px;}
+.product-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(45,110,110,.05),rgba(184,134,11,.05));opacity:0;transition:opacity .38s;pointer-events:none;border-radius:8px;}
+.product-card:hover{border-color:var(--teal);box-shadow:0 16px 48px rgba(26,18,8,.16);transform:translateY(-8px);}
+.product-card:hover::after{opacity:1;}
 .product-img-wrap{width:100%;padding-bottom:120%;position:relative;overflow:hidden;background:#f0ebe3;}
-.product-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;background:#f0ebe3;}
+.product-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;background:#f0ebe3;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.product-card:hover .product-img-wrap img{transform:scale(1.06);}
 .product-img-wrap .no-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--teal-dark),var(--crimson));}
 .no-img-inner{width:70%;max-width:120px;opacity:.45;}
-.prod-badge{position:absolute;top:.6rem;left:.6rem;background:var(--crimson);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .6rem;z-index:2;border-radius:2px;}
+.prod-badge{position:absolute;top:.6rem;left:.6rem;background:var(--crimson);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .6rem;z-index:2;border-radius:2px;animation:badgePop .4s cubic-bezier(.4,0,.2,1);}
 .prod-badge.gold{background:var(--gold);color:var(--teal-dark);}
+@keyframes badgePop{from{opacity:0;transform:scale(.7) translateX(-6px);}to{opacity:1;transform:scale(1) translateX(0);}}
 .prod-disc-badge{position:absolute;bottom:.6rem;left:.6rem;background:var(--teal);color:#fff;font-size:.6rem;font-weight:700;padding:.18rem .6rem;z-index:2;border-radius:2px;}
-.wish-btn{position:absolute;top:.6rem;right:.6rem;background:rgba(255,255,255,.92);border:none;width:30px;height:30px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2;border-radius:50%;}
-.wish-btn:hover{background:#fff;transform:scale(1.12);}
+.wish-btn{position:absolute;top:.6rem;right:.6rem;background:rgba(255,255,255,.92);border:none;width:32px;height:32px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:all .25s cubic-bezier(.4,0,.2,1);z-index:2;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.wish-btn:hover{background:#fff;transform:scale(1.18) rotate(-5deg);box-shadow:0 4px 14px rgba(0,0,0,.15);}
 .product-body{padding:.95rem;}
 .prod-cat{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.25rem;}
 .prod-name{font-family:var(--serif);font-size:.97rem;font-weight:600;color:var(--text);margin-bottom:.4rem;line-height:1.3;}
 .prod-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem;}
 .prod-price{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--teal-dark);}
 .prod-price .orig{font-family:var(--sans);font-size:.75rem;font-weight:300;color:var(--text-light);text-decoration:line-through;margin-left:.35rem;}
-.add-cart-btn{background:var(--teal-dark);color:#fff;border:none;padding:.42rem .78rem;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px;}
-.add-cart-btn:hover{background:var(--teal-light);}
+.add-cart-btn{background:var(--teal-dark);color:#fff;border:none;padding:.44rem .85rem;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);border-radius:20px;position:relative;overflow:hidden;}
+.add-cart-btn::before{content:'';position:absolute;inset:0;background:var(--gold);opacity:0;transition:opacity .25s;border-radius:20px;}
+.add-cart-btn:hover{transform:scale(1.06);box-shadow:0 4px 14px rgba(45,110,110,.35);}
+.add-cart-btn:hover::before{opacity:.2;}
 .add-cart-btn:disabled{opacity:.4;cursor:not-allowed;}
 .stock-info{font-size:.62rem;color:var(--teal);margin-top:.18rem;}
 .stock-info.low{color:var(--crimson);}
@@ -506,12 +523,14 @@ select.form-input{cursor:pointer;}
 
 /* ORDER TRACKING */
 .track-timeline{padding:.75rem 0;}
-.track-step{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.4rem;position:relative;}
-.track-step:not(:last-child)::before{content:'';position:absolute;left:14px;top:30px;bottom:-18px;width:2px;background:var(--border);}
-.track-step:not(:last-child).done-step::before{background:var(--teal);}
-.track-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;border:2px solid var(--border);background:#fff;font-weight:700;}
-.track-dot.done{background:var(--teal);border-color:var(--teal);color:#fff;}
-.track-dot.active{background:var(--gold);border-color:var(--gold);color:var(--teal-dark);}
+.track-step{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.4rem;position:relative;animation:stepIn .4s ease both;}
+@keyframes stepIn{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:translateX(0);}}
+.track-step:not(:last-child)::before{content:'';position:absolute;left:14px;top:30px;bottom:-18px;width:2px;background:var(--border);transition:background .5s;}
+.track-step:not(:last-child).done-step::before{background:linear-gradient(to bottom,var(--teal),var(--teal-light));}
+.track-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;border:2px solid var(--border);background:#fff;font-weight:700;transition:all .3s cubic-bezier(.4,0,.2,1);}
+.track-dot.done{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 0 0 4px rgba(45,110,110,.15);}
+.track-dot.active{background:var(--gold);border-color:var(--gold);color:var(--teal-dark);box-shadow:0 0 0 6px rgba(184,134,11,.18);animation:pulseDot 2s ease infinite;}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 6px rgba(184,134,11,.18);}50%{box-shadow:0 0 0 10px rgba(184,134,11,.08);}}
 .track-info{flex:1;padding-top:.18rem;}
 .track-info strong{display:block;font-size:.87rem;font-weight:600;color:var(--text);}
 .track-info span{font-size:.74rem;color:var(--text-light);}
@@ -549,6 +568,50 @@ select.form-input{cursor:pointer;}
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--teal-dark);color:#fff;padding:.72rem 1.75rem;z-index:9999;font-size:.81rem;font-weight:500;box-shadow:var(--shadow-lg);opacity:0;transition:all .4s;max-width:90vw;text-align:center;white-space:nowrap;border-left:3px solid var(--gold);border-radius:3px;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+/* SOCIAL BANNER */
+.footer-social-banner{background:linear-gradient(135deg,#1a0a1e 0%,#2d1040 40%,#1a2a1a 100%);padding:3rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.footer-social-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.footer-social-text{display:flex;flex-direction:column;gap:.3rem;}
+.footer-social-eye{font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,192,64,.6);}
+.footer-social-heading{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:#fff;line-height:1.2;}
+.footer-social-sub{font-size:.82rem;color:rgba(255,255,255,.4);max-width:340px;line-height:1.6;}
+.footer-social-btns{display:flex;gap:.85rem;flex-wrap:wrap;}
+.social-pill{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:1rem 1.4rem;border-radius:16px;text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.05em;transition:all .3s cubic-bezier(.4,0,.2,1);border:1px solid rgba(255,255,255,.1);min-width:120px;position:relative;overflow:hidden;}
+.social-pill::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;}
+.social-pill:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.social-pill:hover::before{opacity:1;}
+.social-pill svg{flex-shrink:0;}
+.social-pill span:first-of-type{font-size:.8rem;font-weight:700;color:#fff;}
+.social-handle{font-size:.66rem;font-weight:400;color:rgba(255,255,255,.55);letter-spacing:.03em;}
+.social-pill.instagram{background:linear-gradient(135deg,rgba(240,100,60,.18),rgba(188,24,136,.18));}
+.social-pill.instagram::before{background:linear-gradient(135deg,rgba(240,100,60,.3),rgba(188,24,136,.3));}
+.social-pill.instagram:hover{border-color:rgba(220,39,67,.5);}
+.social-pill.instagram svg{fill:url(#igFooterGrad);}
+.social-pill.whatsapp{background:rgba(37,211,102,.12);}
+.social-pill.whatsapp::before{background:rgba(37,211,102,.22);}
+.social-pill.whatsapp:hover{border-color:rgba(37,211,102,.5);}
+.social-pill.whatsapp svg{fill:#25D366;}
+.social-pill.google{background:rgba(66,133,244,.1);}
+.social-pill.google::before{background:rgba(66,133,244,.2);}
+.social-pill.google:hover{border-color:rgba(66,133,244,.45);}
+
+/* FOOTER BRAND SOCIAL ICONS */
+.footer-social-icons{display:flex;gap:.55rem;margin-top:1rem;}
+.footer-icon-link{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;transition:all .28s cubic-bezier(.4,0,.2,1);}
+.footer-icon-link:hover{transform:translateY(-3px) scale(1.12);}
+.footer-icon-link.insta{background:linear-gradient(135deg,rgba(240,100,60,.25),rgba(188,24,136,.25));}
+.footer-icon-link.insta:hover{background:linear-gradient(135deg,#f06340,#bc1888);border-color:transparent;box-shadow:0 6px 18px rgba(188,24,136,.45);}
+.footer-icon-link.wa{background:rgba(37,211,102,.12);}
+.footer-icon-link.wa:hover{background:#25D366;border-color:transparent;box-shadow:0 6px 18px rgba(37,211,102,.45);}
+.footer-icon-link.google{background:rgba(66,133,244,.1);}
+.footer-icon-link.google:hover{background:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(66,133,244,.35);}
+.footer-icon-link svg{display:block;}
+
+/* FOOTER BOTTOM SOCIAL */
+.footer-bottom-socials{display:flex;align-items:center;gap:.5rem;}
+.fb-social-icon{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:all .25s;color:rgba(255,255,255,.45);}
+.fb-social-icon:hover{border-color:rgba(255,255,255,.4);color:#fff;transform:scale(1.15);}
+
 /* FOOTER */
 footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,255,255,.6);}
 .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;}
@@ -556,13 +619,95 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
 .footer-col h4{font-family:var(--serif);color:#fff;font-size:.95rem;margin-bottom:1rem;font-weight:600;}
 .footer-col a{display:block;color:rgba(255,255,255,.45);text-decoration:none;font-size:.8rem;margin-bottom:.5rem;transition:color .2s;cursor:pointer;}
 .footer-col a:hover{color:var(--gold-bright);}
-.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.72rem;}
+.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;font-size:.72rem;}
 .footer-name{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--gold-bright);}
 .footer-tag{font-size:.55rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);}
 
-/* WHATSAPP */
-.wa-btn{position:fixed;bottom:1.5rem;right:1.5rem;background:#25D366;color:#fff;border:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:800;transition:all .22s;text-decoration:none;}
-.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.5);}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS & ENHANCED UI
+═══════════════════════════════════════════ */
+
+/* PAGE FADE-IN */
+.page.active{animation:pageFadeIn .45s ease both;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* HERO ENHANCEMENTS */
+.hero-badge{animation:slideDown .6s .2s ease both;}
+.hero h1{animation:slideDown .6s .35s ease both;}
+.hero p{animation:slideDown .6s .5s ease both;}
+.hero-btns{animation:slideDown .6s .65s ease both;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);}}
+
+/* USP STRIP — item shimmer on hover */
+.usp-item{transition:transform .22s, color .22s;cursor:default;}
+.usp-item:hover{transform:scale(1.07);color:var(--teal-dark);}
+.usp{background:linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%);background-size:200% 100%;animation:shimmerStrip 4s linear infinite;}
+@keyframes shimmerStrip{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+/* SECTION TITLE REVEAL */
+.sec-head{opacity:0;transform:translateY(20px);transition:opacity .6s, transform .6s;}
+.sec-head.visible{opacity:1;transform:translateY(0);}
+
+/* CATEGORY CARDS */
+.cat-card{border-radius:12px;transition:all .35s cubic-bezier(.4,0,.2,1);}
+.cat-card:hover{border-color:var(--teal);transform:translateY(-7px) scale(1.03);box-shadow:0 20px 50px rgba(45,110,110,.22);}
+.cat-icon-svg{transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.cat-card:hover .cat-icon-svg{transform:scale(1.2) rotate(-6deg);}
+
+/* STAGGERED PRODUCT CARD ENTRANCE */
+.product-card{opacity:0;transform:translateY(24px);}
+.product-card.visible{animation:cardReveal .5s cubic-bezier(.4,0,.2,1) both;}
+@keyframes cardReveal{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* MODAL ENTRANCE */
+.modal{animation:mIn .32s cubic-bezier(.4,0,.2,1);}
+@keyframes mIn{from{opacity:0;transform:scale(.94) translateY(18px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* TOAST ANIMATION */
+.toast{border-radius:8px;backdrop-filter:blur(8px);background:rgba(30,77,77,.97);}
+
+/* CART SIDEBAR TRANSITION */
+.cart-sidebar{border-radius:16px 0 0 16px;}
+
+/* BUTTON RIPPLE */
+.btn-primary,.btn-full,.nav-auth-btn{position:relative;overflow:hidden;}
+.btn-primary::after,.btn-full::after,.nav-auth-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);opacity:0;transition:opacity .3s;border-radius:inherit;}
+.btn-primary:hover::after,.btn-full:hover::after,.nav-auth-btn:hover::after{opacity:1;}
+
+/* WHY CARDS ANIMATION */
+.why-card{transition:all .35s cubic-bezier(.4,0,.2,1);border-radius:12px;}
+.why-card:hover{border-color:rgba(240,192,64,.5);background:rgba(240,192,64,.06);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.2);}
+.why-num{transition:color .3s, transform .35s;}
+.why-card:hover .why-num{color:rgba(240,192,64,.35);transform:scale(1.1);}
+
+/* SCROLLBAR STYLING */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--cream-dark);border-radius:4px;}
+::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,var(--teal),var(--teal-light));border-radius:4px;}
+
+/* SEARCH INPUT FOCUS GLOW */
+.search-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(45,110,110,.12);}
+
+/* WAVY ANN BAR */
+.ann-bar{background:linear-gradient(90deg,var(--teal-dark) 0%,#1a4040 50%,var(--teal-dark) 100%);}
+
+/* ORDER STATUS BADGES — enhanced */
+.order-status{border-radius:20px;font-size:.62rem;padding:.22rem .85rem;}
+.st-shipped{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);color:#065F46;border:1px solid rgba(6,95,70,.15);}
+.st-delivered{background:linear-gradient(135deg,#F0FDF4,#dcfce7);color:#166534;border:1px solid rgba(22,101,52,.15);}
+.st-pending{background:linear-gradient(135deg,#FEF3C7,#fde68a);color:#92400E;border:1px solid rgba(146,64,14,.15);}
+.st-packing{background:linear-gradient(135deg,#DBEAFE,#bfdbfe);color:#1E40AF;border:1px solid rgba(30,64,175,.15);}
+.st-packed{background:linear-gradient(135deg,#EDE9FE,#ddd6fe);color:#5B21B6;border:1px solid rgba(91,33,182,.15);}
+
+/* FLOATING WHATSAPP */
+.wa-btn{animation:waPulse 3s ease infinite;}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4);}50%{box-shadow:0 4px 32px rgba(37,211,102,.65),0 0 0 8px rgba(37,211,102,.08);}}
+
+/* HERO GRADIENT ANIMATION */
+.hero{background:linear-gradient(145deg,var(--teal-dark) 0%,#163c3c 40%,#2d1a2e 70%,var(--crimson) 100%);background-size:300% 300%;animation:heroGrad 12s ease infinite;}
+@keyframes heroGrad{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
 
 /* SUCCESS */
 .success-wrap{text-align:center;padding:1rem;}
@@ -584,6 +729,9 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
   .admin-sidebar{display:none;}
   .admin-sidebar.mob-open{display:flex;position:fixed;inset:0;top:var(--nav-h);z-index:500;overflow-y:auto;width:260px;}
   .admin-mob-toggle{display:inline-flex;}
+  .footer-social-inner{flex-direction:column;text-align:center;}
+  .footer-social-btns{justify-content:center;}
+  .footer-social-sub{max-width:100%;}
 }
 @media(max-width:768px){
   .hero{padding:2.5rem 1rem;min-height:auto;}
@@ -640,6 +788,15 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
     <li id="nav-myorders" style="display:none"><a onclick="showMyOrders()">My Orders</a></li>
   </ul>
   <div class="nav-right">
+    <!-- Social quick links in nav -->
+    <div class="nav-social-links">
+      <a href="https://www.instagram.com/dhisha___boutique/" target="_blank" rel="noopener" class="nav-social-btn" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://wa.me/919940220261?text=Hi%20Dhisha%20Boutique!" target="_blank" rel="noopener" class="nav-social-btn nav-wa" title="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
+      </a>
+    </div>
     <div id="nav-actions"><button class="nav-auth-btn out" onclick="openModal('auth-modal');showAuthView('phone')">Login</button></div>
     <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -658,6 +815,27 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
   <a id="mob-myorders" style="display:none" onclick="showMyOrders();closeMobNav()">My Orders</a>
   <div class="mob-nav-act" id="mob-nav-act">
     <button class="nav-auth-btn out" onclick="openModal('auth-modal');showAuthView('phone');closeMobNav()">Login</button>
+  </div>
+  <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)">
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:.9rem">Follow Us</div>
+    <a href="https://www.instagram.com/dhisha___boutique/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.6rem;padding:.6rem 0;color:var(--text-mid);text-decoration:none;font-size:.85rem;font-weight:500;border-bottom:1px solid var(--border)">
+      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#f06340,#bc1888);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </span>
+      Instagram &nbsp;<span style="color:var(--text-light);font-size:.75rem">@dhishaboutique</span>
+    </a>
+    <a href="https://wa.me/919940220261?text=Hi%20Dhisha%20Boutique!" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.6rem;padding:.6rem 0;color:var(--text-mid);text-decoration:none;font-size:.85rem;font-weight:500;border-bottom:1px solid var(--border)">
+      <span style="width:28px;height:28px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
+      </span>
+      WhatsApp &nbsp;<span style="color:var(--text-light);font-size:.75rem">+91 99402 20261</span>
+    </a>
+    <a href="https://g.page/dhishaboutique" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.6rem;padding:.6rem 0;color:var(--text-mid);text-decoration:none;font-size:.85rem;font-weight:500">
+      <span style="width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      </span>
+      Google Business
+    </a>
   </div>
 </div>
 
@@ -747,6 +925,22 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
           <svg class="cat-icon-svg" viewBox="0 0 40 40"><path d="M8 20 Q14 8 20 8 Q26 8 32 20 Q26 32 20 32 Q14 32 8 20Z" fill="none" stroke="var(--teal)" stroke-width="1.8"/><path d="M12 20 Q16 13 20 13 Q24 13 28 20 Q24 27 20 27 Q16 27 12 20Z" fill="rgba(45,110,110,.12)"/></svg>
           <div class="cat-name">Georgette</div><div class="cat-sub">Soft &amp; Flowing</div>
         </a>
+        <a class="cat-card" onclick="scrollToProds();App.setFilter('Chiffon')">
+          <svg class="cat-icon-svg" viewBox="0 0 40 40"><path d="M10 15 Q20 8 30 15 Q35 22 30 28 Q20 35 10 28 Q5 22 10 15Z" fill="none" stroke="var(--teal-light)" stroke-width="1.8"/><path d="M14 20 Q20 14 26 20" stroke="var(--gold)" stroke-width="1.4" fill="none"/><path d="M14 22 Q20 28 26 22" stroke="var(--gold)" stroke-width="1.4" fill="none"/></svg>
+          <div class="cat-name">Chiffon</div><div class="cat-sub">Light &amp; Dreamy</div>
+        </a>
+        <a class="cat-card" onclick="scrollToProds();App.setFilter('Chanderi')">
+          <svg class="cat-icon-svg" viewBox="0 0 40 40"><polygon points="20,6 25,14 35,14 28,20 31,30 20,25 9,30 12,20 5,14 15,14" fill="rgba(184,134,11,.1)" stroke="var(--gold)" stroke-width="1.6"/><circle cx="20" cy="20" r="4" fill="rgba(45,110,110,.18)" stroke="var(--teal)" stroke-width="1.2"/></svg>
+          <div class="cat-name">Chanderi</div><div class="cat-sub">Sheer Elegance</div>
+        </a>
+        <a class="cat-card" onclick="scrollToProds();App.setFilter('Linen')">
+          <svg class="cat-icon-svg" viewBox="0 0 40 40"><rect x="8" y="10" width="24" height="20" rx="2" fill="none" stroke="var(--teal)" stroke-width="1.8"/><line x1="8" y1="16" x2="32" y2="16" stroke="var(--gold)" stroke-width="1.2"/><line x1="8" y1="22" x2="32" y2="22" stroke="var(--gold)" stroke-width="1.2"/><line x1="8" y1="28" x2="32" y2="28" stroke="var(--gold)" stroke-width="1.2"/><line x1="16" y1="10" x2="16" y2="30" stroke="rgba(45,110,110,.3)" stroke-width="1"/><line x1="24" y1="10" x2="24" y2="30" stroke="rgba(45,110,110,.3)" stroke-width="1"/></svg>
+          <div class="cat-name">Linen</div><div class="cat-sub">Natural &amp; Cool</div>
+        </a>
+        <a class="cat-card" onclick="scrollToProds();App.setFilter('Designer')">
+          <svg class="cat-icon-svg" viewBox="0 0 40 40"><polygon points="20,5 24,15 35,15 26,22 29,33 20,27 11,33 14,22 5,15 16,15" fill="rgba(184,134,11,.12)" stroke="var(--gold)" stroke-width="1.8"/></svg>
+          <div class="cat-name">Designer</div><div class="cat-sub">Contemporary Art</div>
+        </a>
         <a class="cat-card" onclick="scrollToProds();App.setFilter('All')">
           <svg class="cat-icon-svg" viewBox="0 0 40 40"><rect x="7" y="7" width="11" height="11" rx="1.5" fill="rgba(45,110,110,.2)" stroke="var(--teal)" stroke-width="1.5"/><rect x="22" y="7" width="11" height="11" rx="1.5" fill="rgba(184,134,11,.2)" stroke="var(--gold)" stroke-width="1.5"/><rect x="7" y="22" width="11" height="11" rx="1.5" fill="rgba(139,26,46,.15)" stroke="var(--crimson)" stroke-width="1.5"/><rect x="22" y="22" width="11" height="11" rx="1.5" fill="rgba(74,144,144,.2)" stroke="var(--teal-light)" stroke-width="1.5"/></svg>
           <div class="cat-name">All Sarees</div><div class="cat-sub">View Everything</div>
@@ -780,12 +974,15 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
       </div>
       <div class="filter-row">
         <span class="filter-lbl">Filter:</span>
-        <button class="filter-btn active" data-cat="All" onclick="App.setFilter('All')">All</button>
+        <button class="filter-btn active" data-cat="All" onclick="App.setFilter('All')">&#10022; All</button>
         <button class="filter-btn" data-cat="Silk" onclick="App.setFilter('Silk')">Silk</button>
         <button class="filter-btn" data-cat="Banarasi" onclick="App.setFilter('Banarasi')">Banarasi</button>
         <button class="filter-btn" data-cat="Cotton" onclick="App.setFilter('Cotton')">Cotton</button>
         <button class="filter-btn" data-cat="Georgette" onclick="App.setFilter('Georgette')">Georgette</button>
+        <button class="filter-btn" data-cat="Chiffon" onclick="App.setFilter('Chiffon')">Chiffon</button>
         <button class="filter-btn" data-cat="Designer" onclick="App.setFilter('Designer')">Designer</button>
+        <button class="filter-btn" data-cat="Linen" onclick="App.setFilter('Linen')">Linen</button>
+        <button class="filter-btn" data-cat="Chanderi" onclick="App.setFilter('Chanderi')">Chanderi</button>
       </div>
       <div class="products-grid" id="all-products-grid"></div>
     </div>
@@ -900,7 +1097,7 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
           <label class="form-label">Mobile Number</label>
           <div class="phone-grp">
             <span class="phone-prefix">🇮🇳 +91</span>
-            <input class="form-input" id="auth-phone" type="tel" placeholder="9876543210" maxlength="10" inputmode="numeric" onkeydown="if(event.key==='Enter')handleSendOtp()"/>
+            <input class="form-input" id="auth-phone" type="tel" placeholder="9940220261" maxlength="10" inputmode="numeric" onkeydown="if(event.key==='Enter')handleSendOtp()"/>
           </div>
         </div>
         <div id="auth-phone-err" class="form-err"></div>
@@ -971,7 +1168,7 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
       <div class="form-group"><label class="form-label">Landmark <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--text-light)">(optional)</span></label><input class="form-input" id="co-landmark" placeholder="Near Anna Nagar Tower Park"/></div>
       <div class="form-sec-label">Contact Details</div>
       <div class="form-row">
-        <div class="form-group"><label class="form-label">Mobile Number *</label><input class="form-input" id="co-phone" type="tel" placeholder="9876543210" maxlength="10" inputmode="numeric"/></div>
+        <div class="form-group"><label class="form-label">Mobile Number *</label><input class="form-input" id="co-phone" type="tel" placeholder="9940220261" maxlength="10" inputmode="numeric"/></div>
         <div class="form-group"><label class="form-label">Alternate Number <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--text-light)">(optional)</span></label><input class="form-input" id="co-altphone" type="tel" placeholder="Optional" maxlength="10" inputmode="numeric"/></div>
       </div>
       <div class="form-group">
@@ -1063,16 +1260,27 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
 
 <!-- FOOTER -->
 <footer id="main-footer">
+  <!-- Social Banner -->
   <div class="footer-grid">
     <div class="footer-brand">
       <div><div class="footer-name">Dhisha Boutique</div><div class="footer-tag">Elegant Collection</div></div>
       <p>Bringing India's finest handwoven sarees directly from artisan weavers to your wardrobe. Authentic. Beautiful. Timeless.</p>
+      <!-- Inline social icons -->
+      <div class="footer-social-icons">
+        <a class="footer-icon-link insta" href="https://www.instagram.com/dhisha___boutique/" target="_blank" rel="noopener" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a class="footer-icon-link wa" href="https://wa.me/919940220261?text=Hi%20Dhisha%20Boutique!" target="_blank" rel="noopener" title="WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
+        </a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
       <a onclick="App.setFilter('Silk');scrollToProds()">Silk Sarees</a>
       <a onclick="App.setFilter('Banarasi');scrollToProds()">Banarasi Sarees</a>
       <a onclick="App.setFilter('Cotton');scrollToProds()">Cotton Sarees</a>
+      <a onclick="App.setFilter('Designer');scrollToProds()">Designer Sarees</a>
       <a onclick="App.setFilter('All');scrollToProds()">All Collections</a>
     </div>
     <div class="footer-col">
@@ -1080,13 +1288,49 @@ footer{background:var(--teal-dark);padding:3.5rem 1.5rem 1.75rem;color:rgba(255,
       <a onclick="showTrackModal()">Track Your Order</a>
       <a onclick="showMyOrders()">My Orders</a>
       <a href="mailto:care@dhishaboutique.in">Contact Us</a>
+      <h4 style="margin-top:1.2rem">Find Us On</h4>
+      <a href="https://www.instagram.com/dhisha___boutique/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.45rem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="url(#igGrad)"><defs><linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        @dhishaboutique
+      </a>
+      <a href="https://wa.me/919940220261" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.45rem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
+        +91 99402 20261
+      </a>
     </div>
   </div>
-  <div class="footer-bottom"><p>&copy; 2024 Dhisha Boutique. All rights reserved.</p><p>Made with care for Indian artisans</p></div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Dhisha Boutique. All rights reserved.</p>
+    <div class="footer-bottom-socials">
+      <a href="https://www.instagram.com/dhisha___boutique/" target="_blank" rel="noopener" title="Instagram" class="fb-social-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://wa.me/919940220261" target="_blank" rel="noopener" title="WhatsApp" class="fb-social-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
+      </a>
+      <a href="https://g.page/dhishaboutique" target="_blank" rel="noopener" title="Google" class="fb-social-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      </a>
+    </div>
+    <p>Made with care for Indian artisans</p>
+  </div>
 </footer>
 
+<!-- Social SVG Gradient Defs -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <linearGradient id="igFooterGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f09433"/>
+      <stop offset="25%" stop-color="#e6683c"/>
+      <stop offset="50%" stop-color="#dc2743"/>
+      <stop offset="75%" stop-color="#cc2366"/>
+      <stop offset="100%" stop-color="#bc1888"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <!-- WhatsApp Float Button -->
-<a class="wa-btn" id="wa-btn" href="https://wa.me/919876543210?text=Hi%20Dhisha%20Boutique%2C%20I%27m%20interested%20in%20your%20sarees!" target="_blank" title="Chat on WhatsApp">
+<a class="wa-btn" id="wa-btn" href="https://wa.me/919940220261?text=Hi%20Dhisha%20Boutique%2C%20I%27m%20interested%20in%20your%20sarees!" target="_blank" title="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.476 3.532 1.311 5.016L2 22l5.12-1.295A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18.2a8.2 8.2 0 01-4.185-1.148l-.3-.177-3.035.768.793-2.962-.196-.314A8.2 8.2 0 013.8 12c0-4.519 3.682-8.2 8.2-8.2s8.2 3.681 8.2 8.2-3.682 8.2-8.2 8.2z"/></svg>
 </a>
 
@@ -1840,7 +2084,7 @@ function showProdDetail(id){
       <button class="btn-full" onclick="Cart.add('${p.id}');closeModal('product-detail-modal')" ${p.stock<=0?'disabled style="opacity:.4;cursor:not-allowed"':''} style="margin-bottom:.4rem">
         ${p.stock<=0?'Out of Stock':'Add to Cart'}
       </button>
-      <a class="btn-full" style="background:transparent;border:1.5px solid #25D366;color:#25D366;display:block;text-align:center;text-decoration:none;padding:.88rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:2px" href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20${encodeURIComponent(p.name)}%20(%E2%82%B9${p.price})" target="_blank">Enquire on WhatsApp</a>
+      <a class="btn-full" style="background:transparent;border:1.5px solid #25D366;color:#25D366;display:block;text-align:center;text-decoration:none;padding:.88rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:2px" href="https://wa.me/919940220261?text=Hi!%20I'm%20interested%20in%20${encodeURIComponent(p.name)}%20(%E2%82%B9${p.price})" target="_blank">Enquire on WhatsApp</a>
     </div>
   </div>`;
   openModal('product-detail-modal');
@@ -1860,7 +2104,7 @@ const STEP_META={
   Pending:{icon:'P',label:'Order Received',desc:'Your order is confirmed and awaiting processing.'},
   Packing:{icon:'K',label:'Packing in Progress',desc:'Our team is carefully packing your saree with love.'},
   Packed:{icon:'D',label:'Packed & Ready',desc:'Your order is packed and ready for dispatch.'},
-  Shipped:{icon:'S',label:'Out for Delivery',desc:'Your order is on its way to you!'},
+  Shipped:{icon:'S',label:'Shipped',desc:'Your order has been shipped and is on its way to you!'},
   Delivered:{icon:'V',label:'Delivered',desc:'Your order has been delivered. Enjoy your saree!'}
 };
 // Using text chars instead of emojis for dots
@@ -1903,7 +2147,7 @@ async function trackOrder(){
     const sl=STEP_META[step];
     const cls=done?'done':active?'active':'';
     const lastTs=order.statusHistory&&order.statusHistory.length?order.statusHistory.filter(h=>h.status===step).pop():null;
-    return`<div class="track-step${done?' done-step':''}">
+    return`<div class="track-step${done?' done-step':''}" style="animation-delay:${i*0.09}s">
       <div class="track-dot ${cls}">${done?STEP_SVG.Delivered:STEP_SVG[step]}</div>
       <div class="track-info">
         <strong style="color:${active?'var(--teal)':done?'var(--text)':'var(--text-light)'}">${sl.label}</strong>
@@ -2105,7 +2349,7 @@ function adminAddProduct(){
     <div class="form-row">
       <div class="form-group"><label class="form-label">Category *</label>
         <select class="form-input" id="ap-cat">
-          <option>Silk</option><option>Banarasi</option><option>Cotton</option><option>Georgette</option><option>Chiffon</option><option>Designer</option>
+          <option>Silk</option><option>Banarasi</option><option>Cotton</option><option>Georgette</option><option>Chiffon</option><option>Designer</option><option>Linen</option><option>Chanderi</option>
         </select>
       </div>
       <div class="form-group"><label class="form-label">Badge</label>
@@ -2263,8 +2507,37 @@ function showToast(msg){
 // Close modal on backdrop click
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);}));
 
+// ── INTERSECTION OBSERVER: Animate products & section heads ───────
+function initObservers(){
+  // Section head reveal
+  const secObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');secObs.unobserve(e.target);}});
+  },{threshold:.2});
+  document.querySelectorAll('.sec-head').forEach(el=>secObs.observe(el));
+
+  // Product card stagger on scroll
+  const cardObs=new IntersectionObserver((entries)=>{
+    let delay=0;
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{e.target.style.animationDelay='0s';e.target.classList.add('visible');},delay);
+        delay+=60;
+        cardObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+
+  const observeCards=()=>{
+    document.querySelectorAll('.product-card:not(.visible)').forEach(c=>cardObs.observe(c));
+  };
+  observeCards();
+  // Re-run when products re-render
+  const grid=document.getElementById('all-products-grid');
+  if(grid){new MutationObserver(observeCards).observe(grid,{childList:true});}
+}
+
 // Init
-document.addEventListener('DOMContentLoaded',()=>App.init());
+document.addEventListener('DOMContentLoaded',()=>{App.init();setTimeout(initObservers,400);});
 </script>
 </body>
 </html>
